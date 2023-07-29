@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
@@ -98,7 +97,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private String encodingImage(Bitmap bitmap) {
-        Log.e("my log", bitmap.toString());
         int previewWidth = 150;
         int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
         Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
@@ -117,7 +115,6 @@ public class SignUpActivity extends AppCompatActivity {
                         InputStream inputStream = getContentResolver().openInputStream(imageUri);
                         Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
 
-                        Log.e("my log", bitmap.toString());
                         binding.imageProfile.setImageBitmap(bitmap);
                         binding.textAddImage.setVisibility(View.INVISIBLE);
                         encodingImage = encodingImage(bitmap);

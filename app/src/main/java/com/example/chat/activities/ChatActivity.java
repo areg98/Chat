@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -131,9 +130,6 @@ public class ChatActivity extends BaseActivity {
         ).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                
-                Log.e("my log", String.valueOf(response.body()));
-
                 if (response.isSuccessful()){
                     try {
                         if (response.body() != null){
@@ -142,17 +138,12 @@ public class ChatActivity extends BaseActivity {
                             if (responseJson.getInt("failure") == 1){
                                 JSONObject error = (JSONObject) results.get(0);
                                 showToast(error.getString("error"));
-                                Log.e("my log", String.valueOf(responseJson.getInt("failure")));
-                                Log.e("my log", error.getString("error"));
                                 return;
                             }
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Log.e("my log", "notification sent with status code: " + String.valueOf(response.code()));
-                    showToast("Notification sent successfully");
-
                 }else {
                     showToast("Error" + response.code());
                 }
@@ -180,6 +171,11 @@ public class ChatActivity extends BaseActivity {
                     isReceiverOnline = online == 1;
                 }
                 receiverUser.token = value.getString(Constants.KEY_FCM_TOKEN);
+                if (receiverUser.image == null){
+                    receiverUser.image = value.getString(Constants.KEY_IMAGE);
+                    chatAdapter.setReceiverProfileImage(getBitmapFromEncodedString(receiverUser.image));
+                    chatAdapter.notifyItemRangeChanged(0,chatMessages.size());
+                }
             }
             if (isReceiverOnline){
                 binding.textOnline.setVisibility(View.VISIBLE);
@@ -232,9 +228,12 @@ public class ChatActivity extends BaseActivity {
     };
 
     private Bitmap getBitmapFromEncodedString(String encodedImage) {
-//        Log.e("my log", encodedImage);
-        byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        if (encodedImage != null){
+            byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        }else {
+            return null;
+        }
     }
 
     private void loadReceiverDetails() {
