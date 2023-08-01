@@ -86,18 +86,13 @@ public class MainActivity extends BaseActivity implements ConversionListener {
                 int id = item.getItemId();
                 binding.getRoot().closeDrawer(GravityCompat.START);
 
-                ActivityMainBinding activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
                 ActivitySettiingsBinding activitySettiingsBinding = ActivitySettiingsBinding.inflate(getLayoutInflater());
 
-                if (id == activityMainBinding.getRoot().getId()) {
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else if (id == activitySettiingsBinding.getRoot().getId()) {
+                if (id == R.id.nav_settings) {
                     Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
                     startActivity(intent);
                     finish();
-                } else if (id == R.id.profile) {
+                } else if (id == R.id.nav_profile) {
                     Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                     startActivity(intent);
                     finish();

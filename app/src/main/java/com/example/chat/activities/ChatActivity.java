@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 
 import com.example.chat.adapters.ChatAdapter;
@@ -122,19 +121,19 @@ public class ChatActivity extends BaseActivity {
     }
 
 
-    private void sendNotification(String messageBody){
+    private void sendNotification(String messageBody) {
         ApiClient.getClient().create(ApiService.class).sendMessage(
                 Constants.getRemoteMsgHeaders(),
                 messageBody
         ).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     try {
-                        if (response.body() != null){
+                        if (response.body() != null) {
                             JSONObject responseJson = new JSONObject(response.body());
                             JSONArray results = responseJson.getJSONArray("results");
-                            if (responseJson.getInt("failure") == 1){
+                            if (responseJson.getInt("failure") == 1) {
                                 JSONObject error = (JSONObject) results.get(0);
                                 showToast(error.getString("error"));
                                 return;
@@ -143,7 +142,7 @@ public class ChatActivity extends BaseActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }else {
+                } else {
                     showToast("Error" + response.code());
                 }
             }
@@ -155,28 +154,28 @@ public class ChatActivity extends BaseActivity {
         });
     }
 
-    private void listenOnlineOfReceiver(){
+    private void listenOnlineOfReceiver() {
         database.collection(Constants.KEY_COLLECTION_USERS).document(
                 receiverUser.id
         ).addSnapshotListener(ChatActivity.this, (value, error) -> {
-            if (error != null){
-                return ;
+            if (error != null) {
+                return;
             }
-            if (value != null){
-                if (value.getLong(Constants.KEY_ONLINE) != null){
+            if (value != null) {
+                if (value.getLong(Constants.KEY_ONLINE) != null) {
                     int online = Objects.requireNonNull(
                             value.getLong(Constants.KEY_ONLINE)
                     ).intValue();
                     isReceiverOnline = online == 1;
                 }
                 receiverUser.token = value.getString(Constants.KEY_FCM_TOKEN);
-                if (receiverUser.image == null){
+                if (receiverUser.image == null) {
                     receiverUser.image = value.getString(Constants.KEY_IMAGE);
                     chatAdapter.setReceiverProfileImage(getBitmapFromEncodedString(receiverUser.image));
-                    chatAdapter.notifyItemRangeChanged(0,chatMessages.size());
+                    chatAdapter.notifyItemRangeChanged(0, chatMessages.size());
                 }
             }
-            if (isReceiverOnline){
+            if (isReceiverOnline) {
                 binding.textOnline.setVisibility(View.VISIBLE);
             } else {
                 binding.textOnline.setVisibility(View.GONE);
@@ -184,6 +183,7 @@ public class ChatActivity extends BaseActivity {
 
         });
     }
+
     private void listenMessages() {
         database.collection(Constants.KEY_COLLECTION_CHAT)
                 .whereEqualTo(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID))
@@ -228,10 +228,10 @@ public class ChatActivity extends BaseActivity {
     };
 
     private Bitmap getBitmapFromEncodedString(String encodedImage) {
-        if (encodedImage != null){
+        if (encodedImage != null) {
             byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
             return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        }else {
+        } else {
             return null;
         }
     }
@@ -247,10 +247,7 @@ public class ChatActivity extends BaseActivity {
         });
         binding.layoutSend.setOnClickListener(v -> {
             sendMessage();
-            Log.i("my log", String.valueOf(binding.chatRecyclerView.getScaleY()));
-            binding.chatRecyclerView.scrollTo(binding.chatRecyclerView.getLeft(), binding.chatRecyclerView.getTop());
         });
-
     }
 
     private String getReadableDateTime(Date date) {
