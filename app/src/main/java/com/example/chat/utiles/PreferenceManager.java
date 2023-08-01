@@ -9,7 +9,6 @@ public class PreferenceManager {
 
     public PreferenceManager (Context context){
         sharedPreferences = context.getSharedPreferences(Constants.KEY_PREFERENCE_NAME, Context.MODE_PRIVATE);
-
     }
 
     public void putBoolean (String key,Boolean value){

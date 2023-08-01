@@ -71,6 +71,7 @@ public class SignUpActivity extends AppCompatActivity {
         if (encodingImage != null){
             user.put(Constants.KEY_IMAGE, encodingImage);
         }else {
+            // need to change, to use image from package drawable
             user.put(Constants.KEY_IMAGE, Constants.DEFAULT_PROFILE_IMAGE);
         }
 
@@ -81,6 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                     preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
                     preferenceManager.putString(Constants.KEY_NAME, binding.inputName.getText().toString());
+                    preferenceManager.putString(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
                     if (encodingImage != null){
                         preferenceManager.putString(Constants.KEY_IMAGE, encodingImage);
                     }else {
@@ -97,7 +99,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private String encodingImage(Bitmap bitmap) {
-        int previewWidth = 150;
+        int previewWidth = 1080;
         int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
         Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
