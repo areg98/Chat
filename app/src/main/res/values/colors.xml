@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="input_background">#D2595959</color>
-    <color name="main_layout_background">#98D3ED</color>
-    <color name="nav_background">#076B97</color>
-    <color name="error">#E60505</color>
+    <color name="main_background">#143C8C</color>
+    <color name="sec_background">#14488C</color>
+    <color name="received_message_background">#1F598C</color>
+    <color name="sent_message_background">#398CBF</color>
+    <color name="conversion_background">#398CBF</color>
+    <color name="main_text">#FFFFFF</color>
+    <color name="sec_text">#3498BF</color>
+    <color name="icon">#FFFFFF</color>
 
 </resources>

@@ -57,6 +57,8 @@ public class MainActivity extends BaseActivity implements ConversionListener {
         listenConversions();
     }
 
+
+
     private void init() {
         conversions = new ArrayList<>();
         conversionAdapter = new RecentConversionAdapter(conversions, this);

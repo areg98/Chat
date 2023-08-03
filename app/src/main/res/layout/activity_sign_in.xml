@@ -8,6 +8,7 @@
     android:overScrollMode="never"
     android:clipToPadding="false"
     android:padding="@dimen/_24sdp"
+    android:background="@color/main_background"
     tools:context=".activities.SignInActivity">
 
 
@@ -15,6 +16,7 @@
         android:id="@+id/signIn_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/main_background"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -25,6 +27,7 @@
             android:text="Sign In"
             android:textAlignment="center"
             android:textSize="@dimen/_40sdp"
+            android:textColor="@color/main_text"
             app:layout_constraintEnd_toEndOf="@id/signIn_form"
             app:layout_constraintStart_toStartOf="@id/signIn_form"
             tools:ignore="MissingConstraints" />
@@ -39,7 +42,9 @@
             android:layout_marginTop="@dimen/_100sdp"
             android:background="@drawable/background_input"
             android:ems="10"
+            android:textColor="@color/main_text"
             android:hint="@string/Email"
+            android:textColorHint="@color/sec_text"
             android:inputType="textEmailAddress"
             android:minHeight="@dimen/_45sdp"
             android:layout_marginHorizontal="@dimen/_24sdp"
@@ -54,6 +59,8 @@
             android:background="@drawable/background_input"
             android:ems="10"
             android:hint="@string/password"
+            android:textColorHint="@color/sec_text"
+            android:textColor="@color/main_text"
             android:inputType="textPassword"
             android:minHeight="@dimen/_45sdp"
             android:layout_marginHorizontal="@dimen/_24sdp"
@@ -73,6 +80,7 @@
                 android:layout_height="@dimen/_50sdp"
                 android:layout_marginHorizontal="@dimen/_50sdp"
                 android:text="@string/sign_in_btn"
+                android:textColor="@color/main_text"
                 app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
             <ProgressBar
@@ -98,7 +106,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/don_t_have_an_account" />
+                android:text="@string/don_t_have_an_account"
+                android:textColor="@color/main_text"/>
 
             <TextView
                 android:id="@+id/textSignUp"
@@ -106,6 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:textStyle="bold"
+                android:textColor="@color/main_text"
                 android:text="@string/sign_up" />
 
         </LinearLayout>
