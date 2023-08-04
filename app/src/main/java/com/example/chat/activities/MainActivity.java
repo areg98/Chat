@@ -57,6 +57,13 @@ public class MainActivity extends BaseActivity implements ConversionListener {
         listenConversions();
     }
 
+//    public void onClick(View view) {
+//        if (darkMode.isChecked()){
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//        }else {
+//            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//        }
+//    }
 
 
     private void init() {

@@ -37,8 +37,11 @@ public class ProfileActivity extends BaseActivity {
 
 
     private void setListeners() {
+
         binding.profileMenu.inflateMenu(R.menu.profile_menu);
         binding.profileMenu.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+
+
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 int id = item.getItemId();

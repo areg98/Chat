@@ -8,5 +8,9 @@
     <color name="main_text">#FFFFFF</color>
     <color name="sec_text">#3498BF</color>
     <color name="icon">#FFFFFF</color>
+    <color name="chat_background">#FFFFFF</color>
+    <color name="nav_background">#FFFFFF</color>
+
+
 
 </resources>
