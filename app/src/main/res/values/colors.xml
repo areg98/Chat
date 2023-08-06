@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="main_background">#143C8C</color>
-    <color name="sec_background">#14488C</color>
+    <color name="sec_background">#F0F0F0</color>
     <color name="received_message_background">#1F598C</color>
     <color name="sent_message_background">#398CBF</color>
     <color name="conversion_background">#398CBF</color>
