@@ -9,8 +9,10 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toolbar;
 
+import com.example.chat.ChatSettingsActivity;
 import com.example.chat.R;
 import com.example.chat.databinding.ActivityProfileBinding;
 import com.example.chat.utiles.Constants;
@@ -71,6 +73,15 @@ public class ProfileActivity extends BaseActivity {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
+        });
+
+        binding.chatSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ChatSettingsActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }
 
